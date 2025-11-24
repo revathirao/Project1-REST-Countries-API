@@ -115,3 +115,11 @@ restcountries.com/v3.1/all?fields=name,capital,currencies
       };
     };
   };
+
+
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+<button id="theme-toggle" class="theme-toggle">
+          <i class="far fa-moon"></i>
+          <span>Dark Mode</span>
+        </button>

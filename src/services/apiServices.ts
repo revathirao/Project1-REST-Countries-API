@@ -2,10 +2,9 @@
 import { AppError } from "../utils/errorHandlers.js";
 import { Country } from "../models/country.js";
 
-const BASE_URL = 'https://restcountries.com/v3.1';
 
 
-export const fetchCountry = async (): Promise<Country[]> => {
+export const fetchAllCountries = async (): Promise<Country[]> => {
     try {
         const response = await fetch
             ("https://restcountries.com/v3.1/all?status=true&fields=name,popultion,region,capital,flag,nativeName,subregion,currencies,languages,borders")
@@ -22,7 +21,7 @@ export const fetchCountry = async (): Promise<Country[]> => {
         if (error instanceof AppError) {
             throw error
         } else {
-            throw new error("unexpected error:" + error)
+            throw new Error("unexpected error:" + error)
         }
     }
 
