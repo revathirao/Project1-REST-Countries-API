@@ -1,6 +1,6 @@
 import { AppError } from "./utils/errorHandlers.js";
 import { Country } from "./models/country.js";
-import { fetchAllCountries } from "./services/apiServices.js";
+import { fetchAllCountries, fetchCountryByCode } from "./services/apiServices.js";
 async function processCountryData() {
     try {
         const countries = await fetchAllCountries();
@@ -18,5 +18,15 @@ async function processCountryData() {
         }
     }
 }
-processCountryData();
+async function processCountryByCode(code) {
+    try {
+        const country = await fetchCountryByCode(code);
+        console.log(country.displayDetails());
+    }
+    catch (error) {
+        console.error(error.message);
+    }
+}
+// processCountryData();
+processCountryByCode("NPL");
 //# sourceMappingURL=main.js.map
