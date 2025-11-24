@@ -11,13 +11,13 @@ export class Country {
 
 
   constructor(data:any) {
-    this.name = data.name;           
+    this.name = data.name?.common|| "Unknown";           
     this.capital = data.capital;    
     this.region = data.region;    
-    this.population = data.population;
-    this.flag = data.flags?.png || '';  // Flag URL
+    this.population = data.population||0;
+    this.flag = data.flags?.png || "";  // Flag URL
     this.borders = data.borders || [];  // Border country codes
-    this.code = data.cca3;           // Country code
+    this.code = data.cca3 || "";           // Country code
   }
 
    formattedPopulation(): string {
@@ -25,6 +25,7 @@ export class Country {
   }
 
     displayDetails(): string {
-        return `${this.name}- Capital: ${this.capital}, Region: ${this.region}, Population: ${this.formattedPopulation()}`;
+        return `${this.name} (${this.code})- Capital: ${this.capital}, Region: ${this.region}, Population: ${this.formattedPopulation()}, 
+        Flag: ${this.flag}, Borders: ${this.borders}`;
   }
 }

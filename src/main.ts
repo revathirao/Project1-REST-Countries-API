@@ -1,7 +1,7 @@
 
 import { AppError } from "./utils/errorHandlers.js";
 import { Country } from "./models/country.js";
-import { fetchAllCountries } from "./services/apiServices.js"
+import { fetchAllCountries, fetchCountryByCode } from "./services/apiServices.js"
 
 
 async function processCountryData(){
@@ -21,4 +21,15 @@ async function processCountryData(){
     }
 }
 
-processCountryData();
+
+async function processCountryByCode(code: string) {
+  try {
+    const country = await fetchCountryByCode(code);
+    console.log(country.displayDetails());
+    
+   } catch (error: any) {
+    console.error(error.message);
+  }
+}
+// processCountryData();
+processCountryByCode("NPL")
