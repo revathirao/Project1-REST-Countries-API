@@ -103,3 +103,15 @@ https://restcountries.com/v3.1/all?status=true&fields=name,popultion,region,capi
 
 
 restcountries.com/v3.1/all?fields=name,capital,currencies
+
+
+ name: {
+    common: string;
+    official: string;
+    nativeName?: {
+      [key: string]: {
+        official: string;
+        common: string;
+      };
+    };
+  };
