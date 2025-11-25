@@ -137,75 +137,16 @@ console.log(getSavedTheme()); // returns 'dark' or 'light'
 
 
 
-function createCountryCard(country: Country) {
-  return `
-    <div class="country-card">
-      <img src="${country.flag}" alt="${country.name}">
-      <h3>${country.name}</h3>
-      <p><strong>Population:</strong> ${country.formattedPopulation()}</p>
-      <p><strong>Region:</strong> ${country.region}</p>
-      <p><strong>Capital:</strong> ${country.capital}</p>
-    </div>
-  `;
-}
-
-this.nativeName = data.name?.nativeName
-  ? Object.values(data.name.nativeName)[0].common
-  : "Unknown";
 
 
-// src/main.ts
-import { fetchAllCountries } from './service/apiService';
 
-const container = document.getElementById('countries');
-const searchInput = document.getElementById('search') as HTMLInputElement;
-const regionFilter = document.getElementById('region') as HTMLSelectElement;
 
-let allCountries: any[] = [];
 
-const renderCountries = (countries: any[]) => {
-  if (!container) return;
-  container.innerHTML = countries.map(country => `
-    <div class="country-card" data-code="${country.code}">
-      <img src="${country.flag}" alt="${country.name} flag">
-      <h3>${country.name}</h3>
-      <p>Population: ${country.formattedPopulation()}</p>
-      <p>Region: ${country.region}</p>
-      <p>Capital: ${country.capital}</p>
-    </div>
-  `).join('');
 
-  // Click event for country detail
-  document.querySelectorAll('.country-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const code = (card as HTMLElement).dataset.code;
-      if (code) window.location.href = `country.html?code=${code}`;
-    });
-  });
-};
 
-const filterCountries = () => {
-  let filtered = allCountries;
 
-  if (searchInput.value) {
-    const term = searchInput.value.toLowerCase();
-    filtered = filtered.filter(c => c.name.toLowerCase().includes(term));
-  }
 
-  if (regionFilter.value && regionFilter.value !== 'All') {
-    filtered = filtered.filter(c => c.region === regionFilter.value);
-  }
 
-  renderCountries(filtered);
-};
-
-const init = async () => {
-  allCountries = await fetchAllCountries();
-  renderCountries(allCountries);
-
-  searchInput?.addEventListener('input', filterCountries);
-  regionFilter?.addEventListener('change', filterCountries);
-};
 
 document.addEventListener('DOMContentLoaded', init);
 

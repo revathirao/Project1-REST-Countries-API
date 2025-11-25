@@ -11,15 +11,19 @@ const form: HTMLFormElement = document.getElementById("form-group") as HTMLFormE
 // This array will store all products that come from the API
 let allCountries: Country[] = [];
 
+let filteredCopy: Country[] = [];
+
 
 //load all countries on pageLoad
 async function loadCountries() {
     allCountries = await fetchAllCountries();
+    filteredCopy = [...allCountries]; // update global copy
+
     console.log("Fetched countries:", allCountries);  // ← Check this
-    recerCountries(allCountries)
+    rendeerCountries(allCountries)
 }
 
-function recerCountries(list: Country[]) {
+function rendeerCountries(list: Country[]) {
     grid.innerHTML = "";
     if (!list) {
         grid.innerHTML = `<div class="empty">No products found </div>`
@@ -33,16 +37,16 @@ function recerCountries(list: Country[]) {
         card.className = "card"
 
         card.innerHTML =
-    `<div class="country-card" data-code="${c.code}">
+            `<div class="country-card" data-code="${c.code}">
         <img src="${c.flag}" alt="${c.name} flag">
         <h3>${c.name}</h3>
         <p>Population: ${c.formattedPopulation()}</p>
         <p>Region: ${c.region}</p>
         <p>Capital: ${c.capital}</p>
     </div>`
-    
-    //Add event listener to each card
-        card.addEventListener("click", function(){
+
+        //Add event listener to each card
+        card.addEventListener("click", function () {
             // Sets the URL of the current browser window, initiating a page redirect.
             window.location.href =
                 // The path to the new HTML page being loaded.
@@ -58,6 +62,38 @@ function recerCountries(list: Country[]) {
 }
 
 loadCountries()
+
+
+searchInput.addEventListener("input", function () {
+    const inputText = searchInput.value.trim().toLowerCase();
+
+    if (!inputText) {
+        rendeerCountries(allCountries);
+        return;
+    }
+
+    const regex = new RegExp(`^${inputText}`, "i");
+
+    const results = allCountries.filter(c =>
+        (c.name && c.name.toLowerCase().match(regex)) ||
+        (c.region && c.region.toLowerCase().match(regex)) 
+    );
+
+    rendeerCountries(results);
+});
+
+//region filter
+regionFilter.addEventListener("change", async function(){
+    const region = regionFilter.value;
+    if (regionFilter.value === "") {
+        rendeerCountries(allCountries);
+    } else {
+        const filtered = await fetchCountryByRegion(regionFilter.value);
+        rendeerCountries(filtered);
+    }
+});
+
+
 
 
 
