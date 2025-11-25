@@ -22,7 +22,7 @@ async function processCountryData() {
 }
 
 
-async function processCountryByCode(code: string) {
+async function  processCountryByCode(code: string) {
     try {
         const country = await fetchCountryByCode(code);
         console.log(country.displayDetails());
