@@ -137,7 +137,9 @@ console.log(getSavedTheme()); // returns 'dark' or 'light'
 
 
 
+https://www.youtube.com/watch?v=ox98ylF1kSM --Dark mode
 
+https://stackoverflow.com/questions/6298566/match-exact-string - regex 
 
 
 
