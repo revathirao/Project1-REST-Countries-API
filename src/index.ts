@@ -15,10 +15,9 @@ let allCountries: Country[] = [];
 //load all countries on pageLoad
 async function loadCountries() {
     allCountries = await fetchAllCountries();
+    console.log("Fetched countries:", allCountries);  // ← Check this
     recerCountries(allCountries)
 }
-
-
 
 function recerCountries(list: Country[]) {
     grid.innerHTML = "";
@@ -57,6 +56,8 @@ function recerCountries(list: Country[]) {
     });
     grid.appendChild(fragment)
 }
+
+loadCountries()
 
 
 
