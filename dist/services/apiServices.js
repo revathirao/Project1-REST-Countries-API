@@ -39,4 +39,24 @@ export const fetchCountryByCode = async (code) => {
         }
     }
 };
+export const fetchCountryByRegion = async (region) => {
+    try {
+        const response = await fetch(`https://restcountries.com/v3.1/region/${region}?fields=name,cca3,population,region,capital,flags,borders`);
+        console.log("HTTP Status:", response.status); //  to debug
+        if (!response.ok) {
+            throw new AppError("Region not found", response.status);
+        }
+        const data = await response.json();
+        return data.map((c) => new Country(c));
+        console.log("API data:", data); // to debug
+    }
+    catch (error) {
+        if (error instanceof AppError) {
+            throw error;
+        }
+        else {
+            throw new Error("unexpected error:" + error);
+        }
+    }
+};
 //# sourceMappingURL=apiServices.js.map

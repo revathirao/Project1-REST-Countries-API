@@ -13,7 +13,7 @@ export class Country {
   constructor(data:any) {
     this.name = data.name?.common|| "Unknown";           
     this.capital = data.capital;    
-    this.region = data.region;    
+    this.region = data.region|| "Unknown";    
     this.population = data.population||0;
     this.flag = data.flags?.png || "";  // Flag URL
     this.borders = data.borders || [];  // Border country codes
