@@ -123,3 +123,148 @@ restcountries.com/v3.1/all?fields=name,capital,currencies
           <i class="far fa-moon"></i>
           <span>Dark Mode</span>
         </button>
+
+
+Instead of writing new URLSearchParams(window.location.search).get('code') everywhere, you have a clean reusable function:
+
+import { getQueryParam } from './utils/url';
+const code = getQueryParam('code');
+
+import { toggleTheme, getSavedTheme } from './utils/theme';
+toggleTheme('dark'); // sets dark mode and saves preference
+console.log(getSavedTheme()); // returns 'dark' or 'light'
+✅ Optional: You can do this inline in main.ts, but separating it makes your code modular and easier to maintain.
+
+
+
+function createCountryCard(country: Country) {
+  return `
+    <div class="country-card">
+      <img src="${country.flag}" alt="${country.name}">
+      <h3>${country.name}</h3>
+      <p><strong>Population:</strong> ${country.formattedPopulation()}</p>
+      <p><strong>Region:</strong> ${country.region}</p>
+      <p><strong>Capital:</strong> ${country.capital}</p>
+    </div>
+  `;
+}
+
+this.nativeName = data.name?.nativeName
+  ? Object.values(data.name.nativeName)[0].common
+  : "Unknown";
+
+
+// src/main.ts
+import { fetchAllCountries } from './service/apiService';
+
+const container = document.getElementById('countries');
+const searchInput = document.getElementById('search') as HTMLInputElement;
+const regionFilter = document.getElementById('region') as HTMLSelectElement;
+
+let allCountries: any[] = [];
+
+const renderCountries = (countries: any[]) => {
+  if (!container) return;
+  container.innerHTML = countries.map(country => `
+    <div class="country-card" data-code="${country.code}">
+      <img src="${country.flag}" alt="${country.name} flag">
+      <h3>${country.name}</h3>
+      <p>Population: ${country.formattedPopulation()}</p>
+      <p>Region: ${country.region}</p>
+      <p>Capital: ${country.capital}</p>
+    </div>
+  `).join('');
+
+  // Click event for country detail
+  document.querySelectorAll('.country-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const code = (card as HTMLElement).dataset.code;
+      if (code) window.location.href = `country.html?code=${code}`;
+    });
+  });
+};
+
+const filterCountries = () => {
+  let filtered = allCountries;
+
+  if (searchInput.value) {
+    const term = searchInput.value.toLowerCase();
+    filtered = filtered.filter(c => c.name.toLowerCase().includes(term));
+  }
+
+  if (regionFilter.value && regionFilter.value !== 'All') {
+    filtered = filtered.filter(c => c.region === regionFilter.value);
+  }
+
+  renderCountries(filtered);
+};
+
+const init = async () => {
+  allCountries = await fetchAllCountries();
+  renderCountries(allCountries);
+
+  searchInput?.addEventListener('input', filterCountries);
+  regionFilter?.addEventListener('change', filterCountries);
+};
+
+document.addEventListener('DOMContentLoaded', init);
+
+
+
+-------------------------------------
+// src/utils/theme.ts
+export const toggleTheme = (theme: 'light' | 'dark') => {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+};
+
+export const getSavedTheme = (): 'light' | 'dark' => {
+  return (localStorage.getItem('theme') as 'light' | 'dark') || 'light';
+};
+
+
+-------------------------------
+What you do on the detail page
+
+Read the country code from the URL:
+
+import { getQueryParam } from './utils/url'; // optional helper
+
+const code = new URLSearchParams(window.location.search).get('code');
+// or use getQueryParam('code')
+
+
+Use your existing service to fetch the country:
+
+import { fetchCountryByCode, fetchAllCountries } from './service/apiService';
+import Country from './models/Country';
+
+const country = await fetchCountryByCode(code);
+
+
+Render all details:
+
+const detailContainer = document.getElementById('country-detail');
+
+if (country && detailContainer) {
+  detailContainer.innerHTML = `
+    <img src="${country.flag}" alt="${country.name} flag">
+    <h2>${country.name}</h2>
+    <p>Population: ${country.formattedPopulation()}</p>
+    <p>Region: ${country.region}</p>
+    <p>Capital: ${country.capital}</p>
+    <div class="borders">
+      ${country.borders.map(borderCode => `<span data-code="${borderCode}" class="border-country">${borderCode}</span>`).join('')}
+    </div>
+  `;
+}
+
+
+Optional: Add click handlers to border countries to navigate to their detail page:
+
+document.querySelectorAll('.border-country').forEach(el => {
+  el.addEventListener('click', () => {
+    const code = (el as HTMLElement).dataset.code;
+    if (code) window.location.href = `country.html?code=${code}`;
+  });
+});
