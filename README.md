@@ -392,3 +392,20 @@ Inside your card click event in index.js, add:
 card.addEventListener("click", () => {
     window.location.href = `detail.html?code=${country.cca3}`;
 }); 
+
+✔ Fix layout
+✔ Create clean SCSS/CSS
+✔ Add dark mode auto-storage in localStorage
+✔ Fix responsiveness
+✔ Optimize performance (no repeated API calls)
+
+ // Get currencies
+    const currencies = country.currencies
+      ? Object.values(country.currencies)
+          .map((curr) => curr.name)
+          .join(", ")
+      : "N/A";
+    // Get languages
+    const languages = country.languages
+      ? Object.values(country.languages).join(", ")
+      : "N/A";

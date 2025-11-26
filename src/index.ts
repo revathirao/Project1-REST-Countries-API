@@ -51,13 +51,14 @@ function rendeerCountries(list: Country[]) {
         //Add event listener to each card
         card.addEventListener("click", function () {
             // Sets the URL of the current browser window, initiating a page redirect.
-            window.location.href =
-                // The path to the new HTML page being loaded.
-                `country.html` +
-                // Starts the query parameter string, passing data to the new page.
-                `?code=` +
-                // Dynamically inserts the value from the 'code' property of the 'c' object.
-                `${c.code}`;
+            window.location.href = `countryCard.html?code=${c.code}`
+                /* The path to the new HTML page being loaded.
+                - countryCard.html
+                -Starts the query parameter string, passing data to the new page.
+                -?code=
+                -Dynamically inserts the value from the 'code' property of the 'c' object.
+               // ${c.code}*/
+               
         });
         fragment.appendChild(card);
     });
