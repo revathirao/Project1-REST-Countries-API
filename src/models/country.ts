@@ -8,12 +8,10 @@ export class Country {
   flag: string
   borders: string[]
   code: string
-  // currencies: string[];
-  // languages: string[];
-  // nativeName::string[];
-  // subregion:string;
-
-
+  currencies: string[];
+  languages: string[];
+  nativeName:string[];
+  subregion:string;
 
 
   constructor(data: any) {
@@ -26,19 +24,19 @@ export class Country {
     this.flag = data.flags?.png || "";  // Flag URL
     this.borders = data.borders || [];  // Border country codes
     this.code = data.cca3 || "";           // Country code
-  //   this.subregion = data.subregion || "N/A";
-  //   // currencies -> convert object → list
-  //   this.currencies = data.currencies
-  //     ? Object.values(data.currencies).map((c: any) => c.name)
-  //     : [];
+    this.subregion = data.subregion || "N/A";
+    // currencies -> convert object → list
+    this.currencies = data.currencies
+      ? Object.values(data.currencies).map((c: any) => c.name)
+      : [];
 
-  //   // languages -> convert object → list
-  //   this.languages = data.languages
-  //     ? Object.values(data.languages)
-  //     : [];
-  //   this.nativeName = data.nativeName?
-  //   Object.values(data.nativeName):[];
-  // 
+    // languages -> convert object → list
+    this.languages = data.languages
+      ? Object.values(data.languages)
+      : [];
+    this.nativeName = data.name?.nativeName
+      ? Object.values(data.name.nativeName).map((n: any) => n.common)
+      : ["N/A"];
   }
 
   formattedPopulation(): string {

@@ -38,7 +38,7 @@
                 <select type="text" id="region-filter">
                     <option value="">Filter by Region</option>
                     <option value="Africa">Africa</option>
-                    <option value="America">America</option>
+                    <option value="Americas">America</option>
                     <option value="Asia">Asia</option>
                     <option value="Europe">Europe</option>
                     <option value="Oceania">Oceania</option>
@@ -49,10 +49,16 @@
 
     <!-- Country Cards Grid -->
     <section>
-        <div id="country-grid" class="countries-list"></div>
+        <div id="list-section" class="countries-list"></div>
         <div class="empty">Loading countries...</div>
         <!-- Country cards will be injected here dynamically using JavaScript -->
+    </section>
 
+     <!-- Detail Section (hidden initially) -->
+    <section id="detail-section" style="display:none;">
+        <button id="back-btn" class="back-btn">← Back</button>
+        <div id="detail-container"></div>
+        <!-- detail page loads-->
     </section>
 </main>
 

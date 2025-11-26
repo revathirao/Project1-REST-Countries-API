@@ -137,11 +137,75 @@ console.log(getSavedTheme()); // returns 'dark' or 'light'
 
 
 
+function createCountryCard(country: Country) {
+  return `
+    <div class="country-card">
+      <img src="${country.flag}" alt="${country.name}">
+      <h3>${country.name}</h3>
+      <p><strong>Population:</strong> ${country.formattedPopulation()}</p>
+      <p><strong>Region:</strong> ${country.region}</p>
+      <p><strong>Capital:</strong> ${country.capital}</p>
+    </div>
+  `;
+}
+
 https://www.youtube.com/watch?v=ox98ylF1kSM --Dark mode
 
 https://stackoverflow.com/questions/6298566/match-exact-string - regex 
 
 
+
+
+import { fetchAllCountries, fetchCountryByCode } from "./services/apiServices.js";
+
+const params = new URLSearchParams(window.location.search);
+const countryName = params.get("name");
+const container = document.getElementById("country-detail")!;
+
+let all = [];
+
+const loadDetail = async () => {
+    all = await fetchAllCountries();
+    const country = all.find(c => c.name === countryName);
+
+    if (!country) return;
+
+    container.innerHTML = `
+        <h2>${country.name}</h2>
+        <img src="${country.flag}">
+        <p><strong>Population:</strong> ${country.population}</p>
+        <p><strong>Region:</strong> ${country.region}</p>
+        <p><strong>Capital:</strong> ${country.capital}</p>
+
+        <h3>Border Countries:</h3>
+        <div id="borders"></div>
+    `;
+
+    // Load border countries
+    const borderBox = document.getElementById("borders")!;
+    borderBox.innerHTML = country.borders
+        .map(code => `<button class="border-btn" data-code="${code}">${code}</button>`)
+        .join("");
+
+    // Click border country → load new detail
+    borderBox.addEventListener("click", async (e) => {
+        const code = (e.target as HTMLElement).dataset.code;
+        if (code) {
+            const newCountry = await fetchCountryByCode(code);
+            window.location.href = `country.html?name=${newCountry.name}`;
+        }
+    });
+};
+
+loadDetail();
+
+
+Smooth CSS styling
+✅ Mobile responsive layout
+✅ Search debounce (faster search)
+✅ Error display UI
+✅ Loading spinner
+✅ Folder cleanup + Vite config
 
 
 
@@ -211,3 +275,120 @@ document.querySelectorAll('.border-country').forEach(el => {
     if (code) window.location.href = `country.html?code=${code}`;
   });
 });
+---------------------------------------------------
+ async function showCountryDetails(code) {
+ 
+ // Hide list
+    document.getElementById("list-section").style.display = "none";
+
+    // Show details
+    document.getElementById("detail-section").style.display = "block";
+
+    // Fetch data
+    const c = await fetchCountryByCode(code);
+
+    // Create HTML
+    const html = `
+        <img src="${c.flag}" class="detail-flag">
+
+        <h2>${c.name}</h2>
+
+        <p><strong>Population:</strong> ${c.formattedPopulation()}</p>
+        <p><strong>Region:</strong> ${c.region}</p>
+        <p><strong>Capital:</strong> ${c.capital}</p>
+
+        <p><strong>Native Name:</strong> ${c.nativeName}</p>
+        <p><strong>Currency:</strong> ${c.currency}</p>
+        <p><strong>Languages:</strong> ${c.languages}</p>
+
+        <div id="border-container"></div>
+    `;
+
+    document.getElementById("detail-container").innerHTML = html;
+
+    renderBorderCountries(c.borders);
+}
+✅ Border countries (clickable)
+(Done inside the same page, no redirect.)
+
+js
+Copy code
+async function renderBorderCountries(borders) {
+    const container = document.getElementById("border-container");
+
+    if (!borders || borders.length === 0) {
+        container.innerHTML = `<p><strong>Border Countries:</strong> None</p>`;
+        return;
+    }
+
+    container.innerHTML = `<strong>Border Countries:</strong> `;
+
+    for (let code of borders) {
+        const b = await fetchCountryByCode(code);
+
+        const btn = document.createElement("button");
+        btn.className = "border-btn";
+        btn.textContent = b.name;
+
+        btn.addEventListener("click", () => {
+            showCountryDetails(code);  // load without leaving page
+        });
+
+        container.appendChild(btn);
+    }
+}------------------------
+
+async function renderBorderCountries(borders) {
+    const container = document.getElementById("border-container");
+
+    if (!borders || borders.length === 0) {
+        container.innerHTML = `<p><strong>Border Countries:</strong> None</p>`;
+        return;
+    }
+
+    container.innerHTML = `<strong>Border Countries:</strong> `;
+
+    for (let code of borders) {
+        const b = await fetchCountryByCode(code);
+
+        const btn = document.createElement("button");
+        btn.className = "border-btn";
+        btn.textContent = b.name;
+
+        btn.addEventListener("click", () => {
+            showCountryDetails(code);  // load without leaving page
+        });
+
+        container.appendChild(btn);
+    }
+}
+--------------------------
+
+Returns to list view.
+
+document.getElementById("back-btn").addEventListener("click", () => {
+    document.getElementById("detail-section").style.display = "none";
+    document.getElementById("list-section").style.display = "block";
+});
+
+
+=================================
+            // Border countries redirect
+            const borderButtons = document.querySelectorAll(".border-btn");
+            borderButtons.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const borderCode = btn.dataset.code;
+                    window.location.href = `detail.html?code=${borderCode}`;
+                });
+            });
+        });
+});
+
+===========================
+2. How to call detail page from index.js
+
+Inside your card click event in index.js, add:
+
+card.addEventListener("click", () => {
+    window.location.href = `detail.html?code=${country.cca3}`;
+}); 

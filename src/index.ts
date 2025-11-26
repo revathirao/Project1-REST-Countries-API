@@ -1,12 +1,15 @@
 import { AppError } from "./utils/errorHandlers.js";
 import { Country } from "./models/country.js";
 import { fetchAllCountries, fetchCountryByCode, fetchCountryByRegion } from "./services/apiServices.js"
+import { setupDarkMode } from "./utils/theme.js";
 
-const grid: HTMLElement = document.getElementById("country-grid")!//!! tells TS that the element exists (never null).
+setupDarkMode();  
+const grid: HTMLElement = document.getElementById("list-section")!//!! tells TS that the element exists (never null).
 const searchInput: HTMLInputElement = document.getElementById("search") as HTMLInputElement //HTMLInputElement tells TS the type of input
 const regionFilter: HTMLSelectElement = document.getElementById("region-filter") as HTMLSelectElement
 const themeTogglebtn: HTMLButtonElement = document.getElementById("theme-toggle") as HTMLButtonElement
-const form: HTMLFormElement = document.getElementById("form-group") as HTMLFormElement;
+
+
 
 // This array will store all products that come from the API
 let allCountries: Country[] = [];
