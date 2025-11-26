@@ -34,3 +34,47 @@ Solution: Added front-end validation with alerts for empty fields, prevented def
 Problem: Adding multiple event listeners caused duplicate triggers and slow performance when many posts were present.
 
 Solution: Used event delegation by attaching a single listener to the parent container for edit and delete actions. This reduced memory usage and ensured smooth interactions.
+
+1. Dark Mode
+
+Challenges:
+
+The dark mode toggle worked on the main page but not on the country details page.
+
+The half moon icon for the toggle was not visible.
+
+Theme changes did not persist when navigating between pages.
+
+Some elements, like detail cards and buttons, did not reflect dark mode styles.
+
+Solutions:
+
+Ensured the toggle button exists on all pages and attached the event listener safely using TypeScript’s null checks.
+
+Corrected the Font Awesome CDN link to display the half moon icon.
+
+Stored the selected theme in localStorage and applied it on page load so dark mode persists across pages.
+
+Updated CSS so all elements, including headers, detail cards, and buttons, inherit dark mode styles.
+
+2. Back Button
+
+Challenges:
+
+Clicking the back button on the country page did not navigate correctly.
+
+An empty page or broken layout appeared because the previous list of countries was not restored.
+
+Solutions:
+
+Used window.history.back() to reliably navigate to the previous page.
+
+Optionally, added a list-section on the country page and re-rendered the country list when the back button was clicked.
+
+✅ Result:
+
+Dark mode toggle works on all pages with the half moon icon visible.
+
+User-selected theme persists across pages.
+
+Back button navigates correctly without showing empty content.

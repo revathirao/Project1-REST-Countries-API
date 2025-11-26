@@ -69,6 +69,8 @@ loadCountries()
 
 
 searchInput.addEventListener("input", function () {
+    
+    regionFilter.value = ""; //prevents region from interfering
     const inputText = searchInput.value.trim().toLowerCase();
 
     if (!inputText) {
@@ -88,6 +90,9 @@ searchInput.addEventListener("input", function () {
 
 //region filter
 regionFilter.addEventListener("change", async function(){
+         regionFilter.value = "";
+
+   
     const region = regionFilter.value;
     if (regionFilter.value === "") {
         rendeerCountries(allCountries);

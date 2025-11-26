@@ -4,12 +4,14 @@ import { Country } from "./models/country.js";
 import { setupDarkMode } from "./utils/theme.js";
 
 
-setupDarkMode();  
 
-const container: HTMLDivElement = document.getElementById("detail-container") as HTMLDivElement;
-const backBtn: HTMLButtonElement = document.getElementById("back-btn") as HTMLButtonElement;
-const detailSection: HTMLElement = document.getElementById("detail-section") as HTMLElement;
-const listSection: HTMLElement = document.getElementById("list-section") as HTMLElement;
+document.addEventListener("DOMContentLoaded", () => {
+    setupDarkMode();
+});
+const container = document.getElementById("detail-container") as HTMLDivElement| null; //allows TypeScript to know the element might not exist.
+const backBtn = document.getElementById("back-btn") as HTMLButtonElement| null;
+const detailSection= document.getElementById("detail-section") as HTMLElement| null;
+const listSection = document.getElementById("list-section") as HTMLElement| null;
 
 // // This line waits until the basic HTML structure of the page has fully loaded.
 // // It ensures that all elements exist on the page before we try to interact with them.
@@ -46,9 +48,10 @@ async function showCountryDetails(code: string) {
     // Render the details to the page
     // const container = document.getElementById("detail-container") as HTMLElement | null;   
   
-        container.innerHTML = `
+    //`;
+    // The ! tells TypeScript “I guarantee this is not null.”
+        container!.innerHTML = `
             
-
             <div class="detail-card">
             <img src="${c.flag}" alt="${c.name} flag" class="detail-flag">
             <h2>${c.name}</h2>
@@ -71,10 +74,11 @@ async function showCountryDetails(code: string) {
 //     // (pages visited in the tab or frame that the current page is loaded in).
 //     window.history.back();
 // });
-
+//Using ?.addEventListener ensures the button won’t throw an error if it doesn’t exist.
 backBtn?.addEventListener("click", function () {
-    detailSection.style.display = "none";
-    listSection.style.display = "block";
+    // if (detailSection) detailSection.style.display = "none";
+    // if (listSection)listSection.style.display = "block";
+    window.history.back();
 });
 
 // The function is marked as 'async' because it uses the 'await' keyword inside.

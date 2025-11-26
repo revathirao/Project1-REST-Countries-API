@@ -7,7 +7,7 @@ const saved = localStorage.getItem("theme");
     if (saved === "dark") body.classList.add("dark");
 
        // Get toggle button (may not exist on all pages)
-    const themeTogglebtn: HTMLButtonElement = document.getElementById("theme-toggle") as HTMLButtonElement
+    const themeTogglebtn = document.getElementById("theme-toggle") as HTMLButtonElement| null;
     // Only add listener if button exists
     if (themeTogglebtn) {
     themeTogglebtn.addEventListener("click", () => {

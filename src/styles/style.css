@@ -11,3 +11,25 @@ button, .card {
     background-color: inherit;
     color: inherit;
 }
+
+.search-container {
+    position: relative;       /* Make icon positioning relative to container */
+    width: 300px;             /* Adjust width as needed */
+}
+
+.search-container input {
+    width: 100%;
+    padding: 10px 10px 10px 35px;  /* Add left padding for icon space */
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-container i {
+    position: absolute;
+    top: 50%;                 /* Vertically center */
+    left: 10px;               /* Distance from left edge */
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;     /* So typing works through the icon */
+}
