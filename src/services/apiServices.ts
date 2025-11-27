@@ -28,7 +28,10 @@ export const fetchAllCountries = async (): Promise<Country[]> => {
 export const fetchCountryByCode = async (code: string): Promise<Country> => {
     try {
 
-        const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`)
+    const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`)
+
+    // const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}?fields=name,flags,population,region,subregion,capital,tld,currencies,languages,borders`);
+
         console.log("HTTP Status:", response.status); //  to debug
 
         if (!response.ok) {
@@ -36,8 +39,48 @@ export const fetchCountryByCode = async (code: string): Promise<Country> => {
         }
 
         const data = await response.json();
+
+         //Validate response BEFORE passing to Country()
+        if (!Array.isArray(data) || !data[0]) {
+            throw new Error("Invalid country data received from API");
+        }
+
+        // console.log("API response for code:", code, data);
         return new Country(data[0]);
-        console.log("API data:", data); // to debug
+
+        
+        // const c = data[0]; // the real country object
+
+        // // FIX: API may return array OR object
+        // const c = Array.isArray(data) ? data[0] : data;
+
+        // if (!c) {
+        //     throw new Error("Invalid country data received from API");
+        // }
+
+        // // Map into your Country model
+
+        // // MAPPING: extract fields safely
+        // const mappedCountry = new Country({
+        //     name: c.name?.common ?? "N/A",
+        //     nativeName: c.name?.official ?? "N/A",
+        //     code: c.cca3 ?? code,
+        //     flag: c.flags?.svg ?? "",
+        //     population: c.population ?? 0,
+        //     region: c.region ?? "N/A",
+        //     subregion: c.subregion ?? "N/A",
+        //     capital: c.capital?.[0] ?? "N/A",
+        //     tld: c.tld ?? [],
+        //     currencies: c.currencies
+        //         ? Object.values(c.currencies).map((cu: any) => cu.name).join(", ")
+        //         : "N/A",
+        //     languages: c.languages
+        //         ? Object.values(c.languages).join(", ")
+        //         : "N/A",
+        //     borders: c.borders ?? []
+        // });
+
+        // return mappedCountry;
 
     } catch (error: any) {
         if (error instanceof AppError) {
@@ -64,7 +107,6 @@ export const fetchCountryByRegion = async (region: string): Promise<Country[]> =
         const data = await response.json();
         return data.map((c: any) => new Country(c));
 
-        console.log("API data:", data); // to debug
 
     } catch (error: any) {
         if (error instanceof AppError) {

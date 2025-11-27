@@ -3,17 +3,15 @@ import { Country } from "./models/country.js";
 import { fetchAllCountries, fetchCountryByCode, fetchCountryByRegion } from "./services/apiServices.js"
 import { setupDarkMode } from "./utils/theme.js";
 
-setupDarkMode();  
+setupDarkMode();
 const grid: HTMLElement = document.getElementById("list-section")!//!! tells TS that the element exists (never null).
 const searchInput: HTMLInputElement = document.getElementById("search") as HTMLInputElement //HTMLInputElement tells TS the type of input
 const regionFilter: HTMLSelectElement = document.getElementById("region-filter") as HTMLSelectElement
 const themeTogglebtn: HTMLButtonElement = document.getElementById("theme-toggle") as HTMLButtonElement
-
-
+const emptyDiv = document.querySelector(".empty") as HTMLElement;
 
 // This array will store all products that come from the API
 let allCountries: Country[] = [];
-
 let filteredCopy: Country[] = [];
 
 
@@ -27,7 +25,16 @@ async function loadCountries() {
 }
 
 function rendeerCountries(list: Country[]) {
-    grid.innerHTML = "";
+   
+   
+
+    // Hide empty div when we have results
+    if (list && list.length > 0) {
+        emptyDiv.style.display = "none";
+    } else {
+        emptyDiv.style.display = "block";
+        emptyDiv.textContent = "No countries found";
+    } grid.innerHTML = "";
     if (!list) {
         grid.innerHTML = `<div class="empty">No products found </div>`
         return;
@@ -52,13 +59,13 @@ function rendeerCountries(list: Country[]) {
         card.addEventListener("click", function () {
             // Sets the URL of the current browser window, initiating a page redirect.
             window.location.href = `countryCard.html?code=${c.code}`
-                /* The path to the new HTML page being loaded.
-                - countryCard.html
-                -Starts the query parameter string, passing data to the new page.
-                -?code=
-                -Dynamically inserts the value from the 'code' property of the 'c' object.
-               // ${c.code}*/
-               
+            /* The path to the new HTML page being loaded.
+            - countryCard.html
+            -Starts the query parameter string, passing data to the new page.
+            -?code=
+            -Dynamically inserts the value from the 'code' property of the 'c' object.
+           // ${c.code}*/
+
         });
         fragment.appendChild(card);
     });
@@ -69,7 +76,7 @@ loadCountries()
 
 
 searchInput.addEventListener("input", function () {
-    
+
     regionFilter.value = ""; //prevents region from interfering
     const inputText = searchInput.value.trim().toLowerCase();
 
@@ -81,18 +88,25 @@ searchInput.addEventListener("input", function () {
     const regex = new RegExp(`^${inputText}`, "i");
 
     const results = allCountries.filter(c =>
-        (c.name && c.name.toLowerCase().match(regex)) ||
-        (c.region && c.region.toLowerCase().match(regex)) 
+    //     (c.name && c.name.toLowerCase().match(regex)) ||
+    //     (c.region && c.region.toLowerCase().match(regex))
+//     // );
+
+//     rendeerCountries(results);
+// });
+    c.name.toLowerCase().match(regex)
     );
 
-    rendeerCountries(results);
+    if (results.length === 0) {
+        grid.innerHTML = `<div class="empty">No countries found</div>`;
+    } else {
+        rendeerCountries(results);
+    }
 });
 
 //region filter
-regionFilter.addEventListener("change", async function(){
-         regionFilter.value = "";
-
-   
+regionFilter.addEventListener("change", async function () {
+    searchInput.value =""
     const region = regionFilter.value;
     if (regionFilter.value === "") {
         rendeerCountries(allCountries);

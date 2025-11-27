@@ -12,6 +12,7 @@ export class Country {
   languages: string[];
   nativeName:string[];
   subregion:string;
+   tld?: string[]; 
 
 
   constructor(data: any) {
@@ -26,17 +27,23 @@ export class Country {
     this.code = data.cca3 || "";           // Country code
     this.subregion = data.subregion || "N/A";
     // currencies -> convert object → list
-    this.currencies = data.currencies
-      ? Object.values(data.currencies).map((c: any) => c.name)
-      : [];
+    // this.currencies = data.currencies
+    //   ? Object.values(data.currencies).map((c: any) => c.name)
+    //   : [];
+
+      this.currencies = data.currencies
+    ? Object.values(data.currencies).map((c: any) => c?.name || "N/A")
+    : ["N/A"];
 
     // languages -> convert object → list
     this.languages = data.languages
       ? Object.values(data.languages)
       : [];
-    this.nativeName = data.name?.nativeName
-      ? Object.values(data.name.nativeName).map((n: any) => n.common)
-      : ["N/A"];
+   
+     this.nativeName = data.name?.nativeName
+      ? Object.values(data.name.nativeName).map((n: any) => n?.common || "N/A")
+  : ["N/A"];
+    this.tld = Array.isArray(data.tld) ? data.tld : data.tld ? [data.tld] : ["N/A"];
   }
 
   formattedPopulation(): string {
