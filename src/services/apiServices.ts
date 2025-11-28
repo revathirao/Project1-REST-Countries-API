@@ -39,7 +39,7 @@ export const fetchCountryByCode = async (code: string): Promise<Country> => {
         }
 
         const data = await response.json();
-
+console.log("Country Data:", data);  
          //Validate response BEFORE passing to Country()
         if (!Array.isArray(data) || !data[0]) {
             throw new Error("Invalid country data received from API");

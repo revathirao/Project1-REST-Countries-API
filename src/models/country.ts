@@ -5,7 +5,7 @@ export class Country {
   capital: string
   region: string
   population: number
-  flag: string
+  flags: string
   borders: string[]
   code: string
   currencies: string[];
@@ -22,7 +22,7 @@ export class Country {
     this.capital = Array.isArray(data.capital) ? data.capital[0] : "N/A";
     this.region = data.region || "Unknown";
     this.population = data.population || 0;
-    this.flag = data.flags?.png || "";  // Flag URL
+    this.flags = data.flags?.png || "";  // Flag URL
     this.borders = data.borders || [];  // Border country codes
     this.code = data.cca3 || "";           // Country code
     this.subregion = data.subregion || "N/A";
@@ -52,6 +52,6 @@ export class Country {
 
   displayDetails(): string {
     return `${this.name} (${this.code})- Capital: ${this.capital}, Region: ${this.region}, Population: ${this.formattedPopulation()}, 
-        Flag: ${this.flag}, Borders: ${this.borders.join(",")}`;
+        Flag: ${this.flags}, Borders: ${this.borders.join(",")}`;
   }
 }

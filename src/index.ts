@@ -48,7 +48,7 @@ function rendeerCountries(list: Country[]) {
 
         card.innerHTML =
             `<div class="country-card" data-code="${c.code}">
-        <img src="${c.flag}" alt="${c.name} flag">
+        <img src="${c.flags}" alt="${c.name} flags">
         <h3>${c.name}</h3>
         <p>Population: ${c.formattedPopulation()}</p>
         <p>Region: ${c.region}</p>

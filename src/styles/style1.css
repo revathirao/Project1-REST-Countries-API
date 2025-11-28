@@ -1,0 +1,310 @@
+/* LIGHT MODE — default (body NOT dark)
+body {
+    background-color: hsl(0, 0%, 98%);
+    color: hsl(200, 15%, 8%);
+}
+
+body:not(.dark) header,
+body:not(.dark) .header-container,
+body:not(.dark) .search-container input,
+body:not(.dark) #region-filter,
+body:not(.dark) .country-card {
+    background-color: hsl(0, 0%, 100%);
+    color: hsl(200, 15%, 8%);
+    box-shadow: 0 2px 9px rgba(0,0,0,0.1);
+}
+
+/* search icon light mode */
+/* body:not(.dark) .search-container i {
+    color: hsl(200, 15%, 8%);
+} */
+
+
+/* DARK MODE */
+/* body.dark {
+    background-color: hsl(207, 26%, 17%);
+    color: hsl(0, 0%, 100%);
+}
+
+body.dark header,
+body.dark .header-container,
+body.dark .search-container input,
+body.dark #region-filter,
+body.dark .country-card {
+    background-color: hsl(209, 23%, 22%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: 0 2px 9px rgba(0,0,0,0.2); */
+/* }
+
+/* search icon dark mode */
+/* body.dark .search-container i {
+    color: hsl(0, 0%, 100%);
+} */
+
+/* theme toggle text/icon */
+/* body.dark #theme-toggle {
+    color: hsl(0, 0%, 100%);
+} */
+
+/* body:not(.dark) #theme-toggle { */
+    /* color: hsl(200, 15%, 8%); */
+/*} */ 
+
+/* ------------------------------
+   GLOBAL RESET
+--------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: hsl(0, 0%, 98%);      /* Light Mode BG */
+    color: hsl(200, 15%, 8%);               /* Light Mode Text */
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+/* ------------------------------
+   DARK MODE GLOBAL
+--------------------------------*/
+body.dark {
+    background-color: hsl(207, 26%, 17%);   /* Dark Mode BG */
+    color: hsl(0, 0%, 100%);                /* Dark Mode Text */
+}
+
+/* Elements that change color in both Light/Dark */
+header,
+.search-container input,
+#region-filter,
+.country-card,
+#theme-toggle {
+    background-color: hsl(0, 0%, 100%);     /* Light Elements */
+    color: hsl(200, 15%, 8%);
+    box-shadow: 0 2px 9px rgba(0,0,0,0.1);
+}
+
+/* Dark Mode Version */
+body.dark header,
+body.dark .search-container input,
+body.dark #region-filter,
+body.dark .country-card,
+body.dark #theme-toggle {
+    background-color: hsl(209, 23%, 22%);
+    color: hsl(0, 0%, 100%);                /* White text */
+    box-shadow: 0 2px 9px rgba(0,0,0,0.2);
+}
+
+/* Dark Mode text inside cards */
+body.dark .country-card h3,
+body.dark .country-card p {
+    color: hsl(0, 0%, 100%);
+}
+
+/* ------------------------------
+   HEADER
+--------------------------------*/
+header {
+    width: 100%;
+    padding: 10px 0;
+     /* width: 90%; */
+    /* max-width: 1440px; */
+    margin: 0 auto;       /* centers the container */
+    /* padding: 0 20px;  */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+ 
+
+header .top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: hsl(200, 15%, 8%); /* Light Mode Title */
+}
+
+/* Dark Mode Title */
+body.dark header h2 {
+    color: hsl(0, 0%, 100%);
+}
+
+   
+/*--------------------------------*/
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ------------------------------
+   PAGE CONTAINERS
+--------------------------------*/
+.top-container,
+#form-group,
+.countries-list {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ------------------------------
+   SEARCH + FILTER
+--------------------------------*/
+#form-group {
+    display: flex;
+    justify-content: flex-start;;
+    align-items: center;
+    margin-top: 25px;
+    /* CHANGE this to provide vertical space: */
+    /* margin: 55px 0;  */
+    /* ADD this line to create space between search and filter containers: */
+    /* gap: 5px;  */
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    /* display: flex;
+    gap: 15px; */
+    margin-right: auto;     /* keeps filter to the right */
+    margin-left: 0px;;         /* explicitly remove any left offset */
+}
+
+.search-container input {
+    width: 100%;
+        /* left: 10px; */
+    /* padding: 10px 40px 10px 15px; */
+    padding: 10px 20px 10px 45px;
+
+    border-radius: 5px;
+    border: none;
+    font-size: 0.9rem;
+ 
+}
+
+.search-container i {
+    position: absolute;
+    /* left: 12px; */
+    /* left: 30px; */
+     left: 15px; 
+    top: 50%;
+    /* top: 50%; */
+    transform: translateY(-50%);
+    color: hsl(200, 15%, 8%);
+}
+
+body.dark .search-container i {
+    color: hsl(0, 0%, 100%);
+}
+
+/* .filter-container { */
+    /* width: 100%;
+    max-width: 300px; */
+    /* width: 40%;    */
+     /* LESS THAN HALF */
+    /* max-width: 220px; */
+    /* width: 30%;
+max-width: 180px; */
+/* } */
+
+#region-filter {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+/* ------------------------------
+   COUNTRIES GRID
+--------------------------------*/
+.countries-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 60px;
+       margin-top: 25px;
+}
+
+/* ------------------------------
+   COUNTRY CARD
+--------------------------------*/
+.country-card {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: none;
+    overflow: hidden;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.country-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.country-card img {
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    aspect-ratio: 16 / 9; /* ADD THIS LINE to maintain proportion */
+    margin-bottom: 25px; 
+    
+
+}
+
+.country-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: hsl(200, 15%, 8%);
+    padding: 15px 20px 0;
+     margin-bottom: 15px;
+}
+
+.country-card p {
+    font-size: 0.9rem;
+    color: hsl(200, 15%, 40%);
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+/* .country-card img { margin-bottom: 5px; } */
+.country-card h3,
+.country-card p { padding-left: 20px; }
+
+/* Empty State */
+.empty {
+    text-align: center;
+    font-size: 1.5rem;
+    color: hsl(200, 15%, 40%);
+}
+
+/* ------------------------------
+   MOBILE RESPONSIVE
+--------------------------------*/
+@media (max-width: 768px) {
+    .countries-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    header .top-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}

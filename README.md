@@ -409,3 +409,247 @@ card.addEventListener("click", () => {
     const languages = country.languages
       ? Object.values(country.languages).join(", ")
       : "N/A";
+
+      https://stackoverflow.com/questions/75949105/what-is-the-purpose-of-color-var-color css colot var
+
+
+
+      /* --- Light Mode Colors (Default) --- */
+body {
+  background-color: hsl(0, 0%, 98%);        /* Very Light Gray Background */
+  color: hsl(200, 15%, 8%);    /* Very Dark Blue Text */
+  transition: background-color 0.3s, color 0.3s;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.header-container, button, .border-country-btn {
+    background-color: hsl(0, 0%, 100%);  /* White Elements */
+    color: hsl(200, 15%, 8%);            /* Very Dark Blue Text */
+    box-shadow: 0 2px 9px rgba(0,0,0,0.05);
+}
+
+/* --- Dark Mode Colors (Activated by .dark class on body) --- */
+body.dark {
+  background-color: hsl(207, 26%, 17%);    /* Very Dark Blue Background */
+  color: hsl(0, 0%, 100%);    /* White Text */
+}
+
+body.dark .header-container, 
+body.dark button, 
+body.dark .border-country-btn {
+    background-color: hsl(209, 23%, 22%); /* Dark Blue Elements */
+    color: hsl(0, 0%, 100%);              /* White Text */
+    box-shadow: 0 2px 9px rgba(0,0,0,0.2);
+}
+
+
+/* --- General & Typography Styles --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Apply 16px font size specifically for the detail page section */
+#detail-section p {
+    font-size: 16px; /* Detail Page Body Copy size (16px) */
+}
+
+/* Headings H2 and strong tags use font-weight 600 (SemiBold) */
+h2, strong {
+    font-weight: 600;
+}
+
+
+/* --- Layout and Component Styles --- */
+/*  */
+
+.header {
+    max-width: 1440px;  /* Limit the width for the header */
+    margin: 0 auto;  /* Center the header */
+    padding: 20px 0;  /* Padding for the header */
+}
+
+.header-container {
+    /* margin-bottom: 40px;
+     
+        padding-top: 20px;   */
+
+        margin: 0 auto; 
+        padding: 20px;
+
+    /* padding-top: 30px; 
+     /* Increase padding at the top to align with the original design */
+    /* padding-bottom: 20 */ 
+     /* padding-top: 20px;   /* Change from 30px to 24px */
+    /* padding-bottom: 24=px; Add bottom padding to match top */
+    /* padding-left: 20px;  Add horizontal padding to center content */
+    /* padding-right: 20px; */ 
+}
+
+
+.top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h2{
+  /* font-size: 1rem;   */
+  /* font-size: 2rem; /* Increase the font size for the title to make it stand out more */
+    /* font-weight: 800; */ 
+    color: var(--text);  /* Ensure the text color is appropriate for light/dark modes */
+        /* font-size: 2rem; (Change this) */
+    font-size: 1.5rem; /* Size in original image */
+    font-weight: 800; /* Use extra bold weight from style guide */
+    /* color: var(--text); (Remove this, colors are handled by dark/light classes) */
+    
+}
+
+
+#theme-toggle {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    border: none; /* Already defined in general button style, but good to be explicit */
+    cursor: pointer;
+
+    display: flex; /* Added to align icon and text */
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+
+}
+
+
+
+#back-btn {
+    margin-left: 20px;  /* Increase left margin for spacing */
+    /* padding: 8px 30px; */
+       padding: 10px 30px; 
+    /* margin-bottom: 40px; */
+     margin-bottom: 60px; /* Increase space below the button */
+        border-radius: 5px;
+    font-weight: 300;
+     display: flex; 
+    align-items: center;
+    gap: 8px;
+}
+
+ 
+
+.detail-content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    /* gap: 50px; */
+    gap: 2rem; /* Reduce the gap between flag and text */
+    /* align-items: center; */
+        align-items: flex-start;
+
+     margin-top: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+.detail-content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; /* Adjust gap to reduce space between flag and text */
+    align-items: flex-start;
+    margin-top: 3rem;
+    max-width: 1200px;
+    margin: auto;  /* Center content */
+}
+
+
+.flag-container {
+    flex: 1 1 100%;
+    min-width: 300px;
+    margin-right: 3rem; /
+}
+
+.flag-container img {
+    width: 100%;
+    box-shadow: inherit; /* Inherit shadow from element style */
+    display: block;
+    margin-left: 50px;
+}
+
+.details-text-container {
+    flex: 1 1 100%;
+    min-width: 300px;
+}
+
+.details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.details-text-container p {
+    margin-bottom: 5px;
+}
+
+@media (min-width: 768px) {
+    .detail-content-wrapper {
+        flex-direction: row;
+        align-items: flex-start;  /* Align flag and description at the top */
+    }
+}
+
+.border-country-btn {
+    padding: 5px 15px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 300;
+    border: none;
+    cursor: pointer;
+}
+
+#border-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+#border-container button {
+
+    background-color: var(--elements);
+    /* padding: 5px 15px; */
+    padding: 10px 20px; 
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+
+/* Desktop Specific Styles (1440px design reference) */
+@media (min-width: 992px) {
+    .detail-content-wrapper {
+        gap: 100px;
+    }
+
+    .flag-container {
+        /* flex: 0 0 500px; */
+         flex: 0 0 40%;  /* Make the flag take 40% of the width */
+    margin-right: 2rem;  /* Space between flag and description */
+    }
+
+    .details-text-container {
+        /* flex: 1; */
+          flex: 1;  /* Let the text take up the remaining space */
+    min-width: 300px;  /* Prevent it from getting too narrow */
+}
+    
+
+    .details-grid {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
