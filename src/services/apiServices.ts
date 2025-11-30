@@ -10,35 +10,35 @@ import { Country } from "../models/country.js";
  * @throws AppError for specific HTTP errors or generic Error for unexpected issues.
  */
 export const fetchAllCountries = async (): Promise<Country[]> => {
-    try {
+try {
 
-        // Fetch specific fields for efficiency: name, cca3, population, region, capital, flags, subregion, currencies, languages, borders
-        const response = await fetch
-            ("https://restcountries.com/v3.1/all?fields=name,cca3,population,region,capital,flags,subregion,currencies,languages,borders")
+    // Fetch specific fields for efficiency: name, cca3, population, region, capital, flags, subregion, currencies, languages, borders
+    const response = await fetch
+        ("https://restcountries.com/v3.1/all?fields=name,cca3,population,region,capital,flags,subregion,currencies,languages,borders")
 
-        if (!response.ok) {
+    if (!response.ok) {
 
-            // Throw a custom error if the network request fails (e.g., 404 Not Found, 500 Server Error)
-            throw new AppError("Failed to fetch Countries", response.status)
-        }
-
-        //Convert response body to JSON
-        const data = await response.json();
-
-        // Map the raw JSON array into an array of Country class instances
-        return data.map((c: any) => new Country(c));
-
-    } catch (error: any) {
-        if (error instanceof AppError) {
-
-            // Re-throw custom AppErrors as they are already specific
-            throw error
-        } else {
-
-            // Wrap any other unexpected errors (e.g., network issues, JSON parsing errors) in a generic Error
-            throw new Error("unexpected error:" + error)
-        }
+        // Throw a custom error if the network request fails (e.g., 404 Not Found, 500 Server Error)
+        throw new AppError("Failed to fetch Countries", response.status)
     }
+
+    //Convert response body to JSON
+    const data = await response.json();
+
+    // Map the raw JSON array into an array of Country class instances
+    return data.map((c: any) => new Country(c));
+
+} catch (error: any) {
+    if (error instanceof AppError) {
+
+        // Re-throw custom AppErrors as they are already specific
+        throw error
+    } else {
+
+        // Wrap any other unexpected errors (e.g., network issues, JSON parsing errors) in a generic Error
+        throw new Error("unexpected error:" + error)
+    }
+}
 
 }
 
@@ -49,41 +49,40 @@ export const fetchAllCountries = async (): Promise<Country[]> => {
  * @throws AppError if the country is not found or other HTTP errors occur.
  */
 export const fetchCountryByCode = async (code: string): Promise<Country> => {
-    try {
+try {
 
-        // Construct the API URL using the provided country code
-        const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`)
+    // Construct the API URL using the provided country code
+    const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`)
 
 
-        console.log("HTTP Status:", response.status); //  to debug
+    console.log("HTTP Status:", response.status); //  to debug
 
-        if (!response.ok) {
+    if (!response.ok) {
 
-            // If status is 404 or similar, throw a specific AppError
-            throw new AppError("Country not found", response.status)
-        }
-
-        const data = await response.json();
-        console.log("Country Data:", data);
-
-        //Validate response BEFORE passing to Country()
-        if (!Array.isArray(data) || !data[0]) {
-            throw new Error("Invalid country data received from API");
-        }
-
-        // Map the first element of the response array into a Country class instance
-        return new Country(data[0]);
-
-    } catch (error: any) {
-        if (error instanceof AppError) {
-            throw error;
-        } else {
-            throw new Error("unexpected error:" + error)
-        }
-
+        // If status is 404 or similar, throw a specific AppError
+        throw new AppError("Country not found", response.status)
     }
-}
 
+    const data = await response.json();
+    console.log("Country Data:", data);
+
+    //Validate response BEFORE passing to Country()
+    if (!Array.isArray(data) || !data[0]) {
+        throw new Error("Invalid country data received from API");
+    }
+
+    // Map the first element of the response array into a Country class instance
+    return new Country(data[0]);
+
+} catch (error: any) {
+    if (error instanceof AppError) {
+        throw error;
+    } else {
+        throw new Error("unexpected error:" + error)
+    }
+
+}
+}
 
 /**
  * Fetches a list of countries belonging to a specific geographical region (e.g., "Europe", "Asia").
@@ -92,30 +91,30 @@ export const fetchCountryByCode = async (code: string): Promise<Country> => {
  * @throws AppError if the region is not found or other HTTP errors occur.
  */
 export const fetchCountryByRegion = async (region: string): Promise<Country[]> => {
-    try {
+try {
 
-        // Fetch countries filtered by region, selecting only necessary fields
-        const response = await fetch(`https://restcountries.com/v3.1/region/${region}?fields=name,cca3,population,region,capital,flags,borders`);
-        console.log("HTTP Status:", response.status); //  to debug
+    // Fetch countries filtered by region, selecting only necessary fields
+    const response = await fetch(`https://restcountries.com/v3.1/region/${region}?fields=name,cca3,population,region,capital,flags,borders`);
+    console.log("HTTP Status:", response.status); //  to debug
 
-        if (!response.ok) {
+    if (!response.ok) {
 
-            // Throw a specific error if the region query fails
-            throw new AppError("Region not found", response.status)
-        }
-
-        const data = await response.json();
-
-        // Map the array of raw data objects into an array of Country class instancesrm -rf detailSection
-        return data.map((c: any) => new Country(c));
-
-
-    } catch (error: any) {
-        if (error instanceof AppError) {
-            throw error;
-        } else {
-            throw new Error("unexpected error:" + error)
-        }
-
+        // Throw a specific error if the region query fails
+        throw new AppError("Region not found", response.status)
     }
+
+    const data = await response.json();
+
+    // Map the array of raw data objects into an array of Country class instancesrm -rf detailSection
+    return data.map((c: any) => new Country(c));
+
+
+} catch (error: any) {
+    if (error instanceof AppError) {
+        throw error;
+    } else {
+        throw new Error("unexpected error:" + error)
+    }
+
+}
 }

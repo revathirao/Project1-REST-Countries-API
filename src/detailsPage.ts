@@ -76,7 +76,7 @@ async function showCountryDetails(code: string) {
         </div>
     </div>
     `;
-    
+
     // Once primary details are rendered, fetch and render border countries asynchronously
     renderBorderCountries(c.borders);
 }
@@ -94,7 +94,7 @@ backBtn?.addEventListener("click", function () {
  * @param borders An array of 3-letter country codes of bordering nations.
  */
 async function renderBorderCountries(borders: string[] = []) {
-   
+
     // Get the HTML element where the border country buttons will be placed.
     const borderContainer = document.getElementById("border-container")!;
 
@@ -118,32 +118,32 @@ async function renderBorderCountries(borders: string[] = []) {
     // Loop through each country code provided in the 'borders' array.
     for (let code of borders) {
         try {
-        // 'await' pauses the loop until the 'fetchCountryByCode' function
-        // which we assume is defined elsewhere and returns a Promise
-        // successfully retrieves the full country data object 'b'.
-        const b = await fetchCountryByCode(code);
+            // 'await' pauses the loop until the 'fetchCountryByCode' function
+            // which we assume is defined elsewhere and returns a Promise
+            // successfully retrieves the full country data object 'b'.
+            const b = await fetchCountryByCode(code);
 
-        // Create a new HTML <button> element dynamically.
-        const btn = document.createElement("button");
+            // Create a new HTML <button> element dynamically.
+            const btn = document.createElement("button");
 
-        // Add a CSS class to the button for styling purposes.
-        btn.className = "border-btn";
+            // Add a CSS class to the button for styling purposes.
+            btn.className = "border-btn";
 
-        // Set the visible text of the button to the name of the fetched country.
-        btn.textContent = b.name;
+            // Set the visible text of the button to the name of the fetched country.
+            btn.textContent = b.name;
 
-        // Add an event listener that executes a function when the button is clicked.
-        btn.addEventListener("click", () => {
+            // Add an event listener that executes a function when the button is clicked.
+            btn.addEventListener("click", () => {
 
-            // This calls another function (showCountryDetails) with the
-            // country code, presumably to load details for that specific country
-            // without reloading the entire web page.
-            showCountryDetails(b.code);
-        });
+                // This calls another function (showCountryDetails) with the
+                // country code, presumably to load details for that specific country
+                // without reloading the entire web page.
+                showCountryDetails(b.code);
+            });
 
-        // Append the newly created and configured button to the main container element in the DOM.
-        btnContainer.appendChild(btn);
-    } catch (error) {
+            // Append the newly created and configured button to the main container element in the DOM.
+            btnContainer.appendChild(btn);
+        } catch (error) {
             // Handle errors for individual border fetches gracefully (e.g., if one code is invalid)
             console.error(`Failed to fetch details for border code ${code}`, error);
             // Optionally, create a disabled button or a placeholder for the error
