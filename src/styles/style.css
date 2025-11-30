@@ -1,0 +1,87 @@
+/* ============================
+   GLOBAL STYLES AND VARIABLES
+   ============================ */
+:root {
+    /* Dark Theme Colors */
+    --dark-bg: hsl(207, 26%, 17%);
+    --dark-element: hsl(209, 23%, 22%);
+    --dark-text: hsl(0, 0%, 100%);
+}
+
+/* Apply Dark Mode background and text color to the body by default */
+body {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+    font-family: 'Nunito Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* ============================
+   MAIN HEADER (Top Navigation Bar)
+   ============================ */
+.header-container {
+    background-color: var(--dark-element);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-container {
+    display: flex;
+    justify-content: space-between; /* Pushes children to opposite ends */
+    align-items: center; /* Vertically centers them */
+    max-width: 1200px; /* Aligns with the main content section width */
+    margin: 0 auto;
+    padding: 20px 20px;
+}
+
+/* ... rest of your header styles ... */
+
+
+/* ============================
+   DETAIL PAGE — DESKTOP LAYOUT
+   ============================ */
+
+/* Main centered container */
+#detail-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Back button - added vertical alignment to match the image's layout */
+#back-btn {
+    margin-bottom: 40px;
+    padding: 6px 35px;
+    border-radius: 5px;
+    font-weight: 300;
+    display: inline-flex;
+    align-items: center; /* Vertically center the text and potential icon */
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    background-color: var(--dark-element);
+    color: var(--dark-text);
+    border: none;
+}
+
+
+/* Layout: Flag (left) + Text (right) - FIXED ALIGNMENT */
+.detail-content-wrapper {
+    display: flex;
+    align-items: flex-start; /* Aligns the top edges of the flag and text */
+    justify-content: space-between;
+    gap: 80px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ... rest of your flag and text container styles ... */
+
+/* Border Countries row - FIXED ALIGNMENT */
+#border-container {
+    display: flex;
+    align-items: center; /* Vertically centers the "Border Countries" text and the button group */
+    gap: 15px;
+    margin-top: 40px;
+}
