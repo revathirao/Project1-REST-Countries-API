@@ -3,29 +3,26 @@
 /*  -------------GLOBAL RESET---------------*/
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
 body {
-    background-color: hsl(0, 0%, 98%);
-    /* Light Mode BG */
-    color: hsl(200, 15%, 8%);
-    /* Light Mode Text */
-    transition: background-color 0.3s, color 0.3s;
-    font-family: 'Nunito Sans', sans-serif;
-    font-weight: 300;
-    font-size: 14px;
+background-color: hsl(0, 0%, 98%);
+/* Light Mode BG */
+color: hsl(200, 15%, 8%);/* Light Mode Text */
+transition: background-color 0.3s, color 0.3s;
+font-family: 'Nunito Sans', sans-serif;
+font-weight: 300;
+font-size: 14px;
 }
 
 /*--------------DARK MODE GLOBAL----------------*/
 
 body.dark {
-    background-color: hsl(207, 26%, 17%);
-    /* Dark Mode BG */
-    color: hsl(0, 0%, 100%);
-    /* Dark Mode Text */
+background-color: hsl(207, 26%, 17%);/* Dark Mode BG */
+color: hsl(0, 0%, 100%);/* Dark Mode Text */
 }
 
 /*---- Elements that change color in both Light/Dark--- */
@@ -36,10 +33,9 @@ header,
 #region-filter,
 .country-card,
 #theme-toggle {
-    background-color: hsl(0, 0%, 100%);
-    /* Light Elements */
-    color: hsl(200, 15%, 8%);
-    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
+background-color: hsl(0, 0%, 100%);/* Light Elements */
+color: hsl(200, 15%, 8%);
+box-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
 }
 
 /* Dark Mode Version */
@@ -49,58 +45,53 @@ body.dark .search-container input,
 body.dark #region-filter,
 body.dark .country-card,
 body.dark #theme-toggle {
-    background-color: hsl(209, 23%, 22%);
-    color: hsl(0, 0%, 100%) !important;
-    /* White text */
-    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.2);
+background-color: hsl(209, 23%, 22%);
+color: hsl(0, 0%, 100%) !important;/* White text */
+box-shadow: 0 2px 9px rgba(0, 0, 0, 0.2);
 }
 
 /* Dark Mode text inside cards */
 body.dark .country-card h3,
 body.dark .country-card p {
-    color: hsl(0, 0%, 100%);
+color: hsl(0, 0%, 100%);
 }
 
 /* --------------HEADER------------------*/
 
 header {
-    width: 100%;
-    margin: 0 auto;
-    /* centers the container */
-    /* padding: 10px 20px 10px 0px; */
-    padding: 10px 20px !important;
-    ;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+width: 100%;
+margin: 0 auto;/* centers the container */
+padding: 10px 20px !important;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 header .top-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+display: flex;
+justify-content: space-between;
+align-items: center;
 }
 
 header h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: hsl(200, 15%, 8%);
-    /* Light Mode Title */
+font-size: 1.5rem;
+font-weight: 600;
+color: hsl(200, 15%, 8%);/* Light Mode Title */
 }
 
 /* Dark Mode Title */
 body.dark header h2 {
-    color: hsl(0, 0%, 100%);
+color: hsl(0, 0%, 100%);
 }
 
 /*--------------Theme-Toggle------------------*/
 
 #theme-toggle {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+background: none;
+border: none;
+font-size: 1rem;
+cursor: pointer;
+display: flex;
+align-items: center;
+gap: 5px;
 }
 
 /*--------------PAGE CONTAINERS----------------*/
@@ -108,212 +99,197 @@ body.dark header h2 {
 .top-container,
 #form-group,
 .countries-list {
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 20px;
+width: 100%;
+max-width: 1440px;
+margin: 0 auto;
+padding: 0 20px;
 }
 
 /* ------------- SEARCH + FILTER----------------*/
 
 #form-group {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: 25px;
-    /* provide vertical space: */
-    gap: 20px;
-    margin-bottom: 5px;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+margin-top: 25px;/* provide vertical space: */
+gap: 20px;
+margin-bottom: 5px;
 }
 
 .search-container {
-    position: relative;
-    width: 100%;
-    max-width: 450px;
-    margin-right: auto;
-    /* keeps filter to the right */
-    margin-left: 0px;
+position: relative;
+width: 100%;
+max-width: 450px;
+margin-right: auto;/* keeps filter to the right */
+margin-left: 0px;
 }
 
 .search-container input {
-    width: 100%;
-    padding: 10px 20px 10px 45px;
-    border-radius: 5px;
-    border: none;
-    font-size: 0.9rem;
+width: 100%;
+padding: 10px 20px 10px 45px;
+border-radius: 5px;
+border: none;
+font-size: 0.9rem;
 }
 
 .search-container i {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: hsl(200, 15%, 8%);
+position: absolute;
+left: 15px;
+top: 50%;
+transform: translateY(-50%);
+color: hsl(200, 15%, 8%);
 }
 
 body.dark .search-container i {
-    color: hsl(0, 0%, 100%);
+color: hsl(0, 0%, 100%);
 }
 
 #region-filter {
-    width: 100%;
-    padding: 10px;
-    padding: 10px 0px 10px 5px;
-    border-radius: 5px;
-    border: none;
+width: 100%;
+padding: 10px;
+padding: 10px 0px 10px 5px;
+border-radius: 5px;
+border: none;
 }
 
 /*---------------- COUNTRIES GRID--------------*/
 
 .countries-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 60px;
-    margin-top: 25px;
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 60px;
+margin-top: 25px;
 }
 
 /* -------------- COUNTRY CARD----------------*/
 
 .country-card {
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    border: none;
-    overflow: hidden;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s, box-shadow 0.3s;
-    padding-bottom: 35px;
+width: 100%;
+height: 100%;
+border-radius: 8px;
+border: none;
+overflow: hidden;
+text-align: left;
+display: flex;
+flex-direction: column;
+transition: transform 0.3s, box-shadow 0.3s;
+padding-bottom: 35px;
 }
 
 .country-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+transform: translateY(-8px);
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .country-card img {
-    width: 100%;
-    height: auto;
-    flex-shrink: 0;
-    aspect-ratio: 16 / 9;
-    /*Ensure flags are proportionate */
-    margin-bottom: 5px;
+width: 100%;
+height: auto;
+flex-shrink: 0;
+aspect-ratio: 16 / 9;/*Ensure flags are proportionate */
+margin-bottom: 5px;
 }
 
 .country-card h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: hsl(200, 15%, 8%);
-    padding: 15px 20px 0;
-    margin-bottom: 10px;
-    margin-top: 20px;
+font-size: 1.2rem;
+font-weight: 600;
+color: hsl(200, 15%, 8%);
+padding: 15px 20px 0;
+margin-bottom: 10px;
+margin-top: 20px;
 }
 
 .country-card p {
-    font-size: 0.9rem;
-    color: hsl(200, 15%, 40%);
-    padding-left: 20px;
-    margin-bottom: 10px;
+font-size: 0.9rem;
+color: hsl(200, 15%, 40%);
+padding-left: 20px;
+margin-bottom: 10px;
 }
 
 .country-card h3,
 .country-card p {
-    padding-left: 20px;
+padding-left: 20px;
 }
 
 /* Empty State */
 .empty {
-    text-align: center;
-    font-size: 1.5rem;
-    color: hsl(200, 15%, 40%);
+text-align: center;
+font-size: 1.5rem;
+color: hsl(200, 15%, 40%);
 }
 
 /*-------------MOBILE RESPONSIVE-----------------*/
 
 @media (max-width: 768px) {
-    .countries-list {
-        grid-template-columns: 1fr;
-        padding: 0 45px;
-        /* even padding left/right */
-        gap: 40px;
+.countries-list {
+    grid-template-columns: 1fr;
+    padding: 0 45px;    /* even padding left/right */
+    gap: 40px;
     }
 
-    header .top-container {
-        flex-direction: row;
-        justify-content: space-between;
-        /* Pushes items to opposite ends */
-        align-items: center;
-        /* Vertically centers them */
-        text-align: left;
-        /* Aligns text left */
-        gap: 15px;
-        /* Add horizontal padding to the top container for mobile */
-        padding: 0 15px;
+header .top-container {
+    flex-direction: row;
+    justify-content: space-between;  /* Pushes items to opposite ends */
+    align-items: center;  /* Vertically centers them */
+    text-align: left;   /* Aligns text left */
+    gap: 15px;
+    /* Add horizontal padding to the top container for mobile */
+    padding: 0 15px;
     }
 
-    /* Stack the search and filter vertically on mobile */
+/* Stack the search and filter vertically on mobile */
 
-    #form-group {
-        flex-direction: column;
-        gap: 20px;
-        align-items: stretch;
-        /* Stretch items to fill the container width */
-        margin-top: 25px;
-        padding: 0 15px;
-    }
+#form-group {
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;  /* Stretch items to fill the container width */
+    margin-top: 25px;
+    padding: 0 15px;
+}
 
-    /* Ensure the search container takes full width when stacked */
-    .search-container {
-        width: 100%;
-        max-width: 100%;
-        margin-right: 0;
-    }
+/* Ensure the search container takes full width when stacked */
+.search-container {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+}
 
-    /* Filter = half width of search */
-    .filter-container {
-        width: 50%;
-        min-width: 160px;
-        position: relative;
-        /* anchors the dropdown */
-        overflow: hidden;
-        /* keeps it inside */
-    }
+/* Filter = half width of search */
+.filter-container {
+    width: 50%;
+    min-width: 160px;
+    position: relative;  /* anchors the dropdown */
+    overflow: hidden;   /* keeps it inside */
+}
 
-    #region-filter {
-        position: relative;
-        z-index: 5;
-        /* ensures the dropdown appears inside */
-        background-color: inherit;
-        /* matches the card */
-        height: 50px;
-        padding: 12px 15px;
-        border-radius: 2px;
-        font-size: 1rem;
-    }
+#region-filter {
+    position: relative;
+    z-index: 5;  /* ensures the dropdown appears inside */
+    background-color: inherit;   /* matches the card */
+    height: 50px;
+    padding: 12px 15px;
+    border-radius: 2px;
+    font-size: 1rem;
+}
 
-    .country-card {
-        padding-bottom: 35px;
-        /* increase grey section height */
-    }
+.country-card {
+    padding-bottom: 35px; /* increase grey section height */
+}
 
-    /* Adjust padding for text inside the country cards */
-    .country-card h3,
-    .country-card p {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
+/* Adjust padding for text inside the country cards */
+.country-card h3,
+.country-card p {
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
-    .country-card img {
-        width: 100%;
-        height: 150px;
-        /* fixed height so ALL flags match */
-        object-fit: cover;
-        /* crops without distortion */
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        display: block;
-    }
+.country-card img {
+    width: 100%;
+    height: 150px; /* fixed height so ALL flags match */
+    object-fit: cover;  /* crops without distortion */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: block;
+}
 }
 
 /*---------------Ensures keyboard users can clearly see which element is currently selected/focused------- */
@@ -325,33 +301,19 @@ select:focus {
     outline-offset: 2px;
 }
 
-/* _____________ DETAIL PAGE STYLES_______________________ */
 
 
-/* ============================
-   DETAIL PAGE — DESKTOP LAYOUT
-   ============================ */
+
+/*-----------DETAIL PAGE --------------------*/
 
 /* Add default dark mode body styles if not present elsewhere */
-body.dark {
-    background-color: hsl(207, 26%, 17%);
-    /* A very dark background color matching the image */
-    color: white;
-    /* Default text color for dark mode */
-}
-
-
-
 
 
 /* Main centered container */
 #detail-section {
     max-width: 1200px;
-    /* Matches original design width */
     margin-left: 145px;
-    /* Centers entire page */
     padding: 40px 20px;
-    /* Consistent internal padding */
 }
 
 /* The container that holds everything inside detail page */
@@ -369,14 +331,11 @@ body.dark {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    /* Updated box-shadow for better visibility in dark mode context */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     /* Ensure default colors are correct if dark class isn't used */
-    background-color: hsl(0, 0%, 100%);
-    /* Light mode default */
-    color: hsl(200, 15%, 8%);
-    /* Light mode text */
+    background-color: hsl(0, 0%, 100%);/* Light mode default */
+    color: hsl(200, 15%, 8%);/* Light mode text */
 }
 
 /* Back button dark mode */
@@ -392,32 +351,26 @@ body.dark #back-btn {
     justify-content: space-between;
     gap: 80px;
     max-width: 1200px;
-    /* FIX: limits layout width like the original */
     margin: 0 auto;
-    /* FIX: centers the whole flag + text section */
 }
 
 /* LEFT SIDE — Flag */
 .flag-container {
     flex: 1;
     max-width: 560px;
-    /* Matches the size from the design */
     padding-right: 50px;
-
 }
 
 .flag-container img {
     width: 100%;
     border-radius: 5px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    /* Slightly darker shadow for effect */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);/* Slightly darker shadow for effect */
 }
 
 /* RIGHT SIDE — Country Info */
 .details-text-container {
     flex: 1;
-    min-width: 300px;
-    /* Prevents collapsing */
+    min-width: 300px;/* Prevents collapsing */
 }
 
 /* Country name */
@@ -456,7 +409,6 @@ body.dark #back-btn {
     display: flex;
     align-items: center;
     gap: 15px;
-    /* flex-wrap: nowrap; */
     margin-top: 40px;
 }
 
@@ -471,11 +423,6 @@ body.dark #back-btn {
 .border-buttons {
     display: flex;
     gap: 10px;
-    /* flex-wrap: wrap; */
-    /* display: flex; */
-    /* gap: 10px; */
-    /* flex-wrap: nowrap; */
-    /* overflow-x: auto;    /* <-- allows hori */
 }
 
 #border-container button {
@@ -497,66 +444,57 @@ body.dark #border-container button {
 }
 
 
-/* ============================
-   MOBILE LAYOUT — 375px
-   ============================ */
+/*---------------MOBILE LAYOUT ------------*/
 
 @media (max-width: 768px) {
 
-    /* Keep container centered */
-    #detail-section {
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-    }
+/* Keep container centered */
+#detail-section {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
 
-    .detail-content-wrapper {
-        max-width: 350px;
-        margin: 0 auto;
-        width: 100%;
-        flex-direction: column;
-        gap: 40px;
-        transform: translateX(20px);
-        /* adjust 5 → 8 → 10 until perfect */
+.detail-content-wrapper {
+    max-width: 350px;
+    margin: 0 auto;
+    width: 100%;
+    flex-direction: column;
+    gap: 40px;
+    transform: translateX(20px);
+}
 
-    }
+.flag-container {
+    display: flex;
+    justify-content: center;
+}
 
-    .flag-container {
-        display: flex;
-        justify-content: center;
-    }
+.details-text-container h2 {
+    margin-left: 0;
+}
 
-    .details-text-container h2 {
-        margin-left: 0;
-    }
+/* Two columns → one column */
+.details-grid {
+    flex-direction: column;
+    gap: 25px;
+}
 
-    /* Two columns → one column */
-    .details-grid {
-        flex-direction: column;
-        gap: 25px;
-    }
+/* Border section wraps nicely */
+#border-container {
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
-    /* Border section wraps nicely */
-    #border-container {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
+.border-buttons {
+    gap: 8px;
+}
 
-    .border-buttons {
-        /* flex-wrap: wrap; */
-        gap: 8px;
-    }
+.details-text-container h2 {
+    margin-left: 0;
+}
 
-
-    .details-text-container h2 {
-        margin-left: 0;
-        /* remove manual offset */
-    }
-
-    #detail-section {
-        margin-left: 0;
-        /* Fixes the centered layout */
-        padding: 20px;
-        /* Keep your mobile padding */
-    }
+#detail-section {
+    margin-left: 0;
+    padding: 20px;
+}
 }
