@@ -99,7 +99,12 @@ grid.appendChild(fragment)
 }
 
 // Calls the main data loading function when the script runs initially.
+
+document.addEventListener("DOMContentLoaded", function(event) {
 loadCountries()
+
+});
+
 
 
 // Adds an event listener that fires whenever the user types into the search input.
