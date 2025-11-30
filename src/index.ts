@@ -47,13 +47,7 @@ function rendeerCountries(list: Country[]) {
         card.className = "card"
 
         card.innerHTML =
-            `<a 
-    href="detail.html?code=${c.code}" 
-    class="country-card-link" 
-    data-code="${c.code}"
-    aria-label="View details for ${c.name}">
-
-    <div class="country-card">
+            `    <div class="country-card">
         <!-- The alt text is descriptive and helpful -->
         <img src="${c.flags}" alt="Flag of ${c.name}">
         
@@ -63,7 +57,7 @@ function rendeerCountries(list: Country[]) {
         <p><strong>Region:</strong> ${c.region}</p>
         <p><strong>Capital:</strong> ${c.capital}</p>
     </div>
-</a>`
+`
 
         //Add event listener to each card
         card.addEventListener("click", function () {
