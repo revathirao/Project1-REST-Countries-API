@@ -44,8 +44,24 @@ Filter: Allows users to filter countries by region (Africa, Americas, Asia, Euro
 Dark Mode Toggle: Users can toggle between light and dark themes.
 Responsive Design: The application adapts to various screen sizes (mobile, tablet, desktop).
 Accessibility: Accessible features like skip to content, ARIA labels, and focus management.
-
 ------------------------------------------------------------------------------------------------------------------------------------------
+Input Validation:
+
+Search Input Validation:
+Trimmed extra spaces from the search input using trim() to avoid errors due to leading/trailing spaces.
+Converted the input to lowercase to make the search case-insensitive, ensuring consistent results.
+Empty Search Handling:
+If the search input was empty, all countries were displayed again to reset the list.
+
+Region Filter Validation:
+Validated the region filter dropdown: if no region was selected, all countries were shown; otherwise, countries were filtered by the selected region.
+
+Error Handling:
+Caught errors from the API (e.g., missing data) and displayed user-friendly messages instead of crashing the app.
+
+This ensures a smooth user experience and prevents errors from incorrect or empty input.
+------------------------------------------------------------------------------------------------------------------------------------------
+
 4. How It Works
 Data Flow (Step-by-Step):
 
