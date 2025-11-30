@@ -39,53 +39,49 @@ async function showCountryDetails(code: string) {
    
 
        // The ! tells TypeScript “I guarantee this is not null.”
-        detailContainer!.innerHTML = 
-        // `
-    //         <div class="detail-card">
-    //         <img src="${c.flag}" alt="${c.name} flag" class="detail-flag">
-    //         <h2>${c.name}</h2>
-    //         <p><strong>Native Name:</strong> ${c.nativeName.join(", ")}</p>
-    //         <p><strong>Population:</strong> ${c.formattedPopulation()}</p>
-    //         <p><strong>Region:</strong> ${c.region}</p>
-    //         <p><strong>Sub Region:</strong> ${c.subregion}</p>
-    //         <p><strong>Capital:</strong> ${c.capital}</p>
-    //         <p><strong>Top Level Domain:</strong> ${c.tld}</p>
-    //         <p><strong>Currencies:</strong> ${c.currencies.join(", ")}</p>
-    //         <p><strong>Languages:</strong> ${c.languages.join(", ")}</p> 
-    //         <div id="border-container"></div> `;
+        detailContainer!.innerHTML = `
+<div class="detail-content-wrapper">
 
-    `<div class="detail-content-wrapper">
-
-    <!-- Left Column: Flag -->
+    <!-- LEFT COLUMN: FLAG -->
     <div class="flag-container">
         <img src="${c.flags}" class="detail-flag" alt="Country flag">
     </div>
 
-    <!-- Right Column: Details -->
+    <!-- RIGHT COLUMN: TEXT DETAILS -->
     <div class="details-text-container">
 
         <h2>${c.name}</h2>
 
+        <!-- Two-column layout -->
         <div class="details-grid">
+
+            <!-- LEFT COLUMN INFO -->
             <div class="details-col-left">
                 <p><strong>Native Name:</strong> ${c.nativeName.join(", ")}</p>
-           <p><strong>Population:</strong> ${c.formattedPopulation()}</p>
-            <p><strong>Region:</strong> ${c.region}</p>
-            <p><strong>Sub Region:</strong> ${c.subregion}</p>
-            <p><strong>Capital:</strong> ${c.capital}</p>
+                <p><strong>Population:</strong> ${c.formattedPopulation()}</p>
+                <p><strong>Region:</strong> ${c.region}</p>
+                <p><strong>Sub Region:</strong> ${c.subregion}</p>
+                <p><strong>Capital:</strong> ${c.capital}</p>
             </div>
 
+            <!-- RIGHT COLUMN INFO -->
             <div class="details-col-right">
                 <p><strong>Top Level Domain:</strong> ${c.tld}</p>
-           <p><strong>Currencies:</strong> ${c.currencies.join(", ")}</p>
-           <p><strong>Languages:</strong> ${c.languages.join(", ")}</p> 
+                <p><strong>Currencies:</strong> ${c.currencies.join(", ")}</p>
+                <p><strong>Languages:</strong> ${c.languages.join(", ")}</p>
             </div>
+
         </div>
 
-        <!-- Border countries -->
+        <!-- BORDER COUNTRY BUTTONS INSERT HERE -->
         <div id="border-container"></div>
+
     </div>
-`
+</div>
+`;    
+
+   
+
         
             renderBorderCountries(c.borders);   
 }
