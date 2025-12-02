@@ -81,7 +81,7 @@ list.forEach(function (c) {
     card.addEventListener("click", function () {
 
         // Sets the URL of the current browser window, initiating a page redirect.
-        window.location.href = `countryCard.html?code=${c.code}`
+        window.location.href = `countrycard.html?code=${c.code}`
         /* The path to the new HTML page being loaded.
         - countryCard.html
         -Starts the query parameter string, passing data to the new page.
@@ -171,13 +171,5 @@ if (regionFilter.value === "") {
     rendeerCountries(filtered);
 }
 });
-
-
-
-
-
-
-
-
 
 
